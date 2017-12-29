@@ -3,6 +3,7 @@ package me.zgy.es;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestClientFactory;
 import io.searchbox.client.config.HttpClientConfig;
+import me.zgy.utils.ConfigUtils;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Arrays;
@@ -13,15 +14,14 @@ import java.util.concurrent.TimeUnit;
  */
 public class ESClientFactory {
 
-    @Value("${hosts}")
-    private String hosts;
+    private static String hosts = ConfigUtils.getString("es.hosts");
 
     private static final JestClient client;
 
     static {
         JestClientFactory factory = new JestClientFactory();
         factory.setHttpClientConfig(new HttpClientConfig
-                .Builder(Arrays.asList("http://127.0.0.1:9200".split(",")))
+                .Builder(Arrays.asList(hosts.split(",")))
                 .defaultCredentials("elastic", "changeme")
                 .multiThreaded(true)
                 .discoveryEnabled(true)
