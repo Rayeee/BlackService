@@ -1,8 +1,9 @@
 package me.zgy.service.es.index;
 
+import io.searchbox.core.Bulk;
+import io.searchbox.core.BulkResult;
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
-import me.zgy.bean.query.BlackQuery;
 import me.zgy.cst.ErrorMessage;
 import me.zgy.es.ESClientFactory;
 import me.zgy.es.index.base.BaseIndex;
@@ -18,7 +19,7 @@ public class ESIndexService<T extends BaseIndex> {
 
     private static final Logger logger = LoggerFactory.getLogger(ESIndexService.class);
 
-    public void index(T entity, String indexName, String indexType) throws ServiceException {
+    protected void index(T entity, String indexName, String indexType) throws ServiceException {
         logger.debug("开始建索引indexName={},indexType={}, entity={}", indexName, indexType, JsonUtils.toJson(entity));
 
         long start = System.currentTimeMillis();
@@ -44,5 +45,25 @@ public class ESIndexService<T extends BaseIndex> {
             throw ErrorMessage.es_do_index_sys_error.getSystemException();
         }
     }
+
+//    public void batchIndex(List<T> entities, String indexName, String indexType) throws IOException {
+//        logger.debug("开始批量建索引indexName={},indexType={}, entity={}", indexName, indexType, JsonUtils.toJson(entities));
+//        Bulk.Builder bulkBuilder = new Bulk.Builder();
+//        entities.forEach(e -> {
+//            Index index = new Index.Builder(e).index("ix_user_info").type("user_info").build();
+//            bulkBuilder.addAction(index);
+//        });
+//        BulkResult result = ESClientFactory.getClient().execute(bulkBuilder.build());
+//        if (result == null) {
+//            logger.error("创建ES索引【失败】执行结果为空index={}", JsonUtils.toJson(entities));
+//            throw ErrorMessage.es_do_index_sys_error.getSystemException();
+//        } else if (result.isSucceeded()) {
+//            System.out.println("创建 success");
+//            logger.info("创建ES索引【成功】index={},type={},id={},doc={}", result.getIndex(), result.getType(), result.getId(), result.getJsonString());
+//        } else {
+//            logger.error("创建ES索引【失败】responseCode={},errorMessage={},index={}", result.getResponseCode(), result.getErrorMessage(), JsonUtils.toJson(index));
+//            throw ErrorMessage.es_do_index_sys_error.getSystemException();
+//        }
+//    }
 
 }

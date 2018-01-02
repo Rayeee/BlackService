@@ -13,8 +13,7 @@ public interface BlackCst {
 
     String ES_PASSWORD = "es.password";
 
-    String USER_INFO_INDEX_PREFIX = "user_info_";
+    String BLACK_INDEX_NAME = "index_black";
 
-    String USER_INFO_INDEX_TYPE = "user_info";
-
+    String BLACK_INDEX_TYPE = "black_type";
 }

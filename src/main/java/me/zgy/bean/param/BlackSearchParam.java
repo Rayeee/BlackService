@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Builder
 @Data
-public class BlackSearchParam {
+public class BlackSearchParam extends BaseSearchParam {
 
     private String creditNo;
 
