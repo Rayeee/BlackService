@@ -1,5 +1,11 @@
 package me.zgy.es;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import io.searchbox.client.JestResult;
+import me.zgy.exception.SystemException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import java.text.SimpleDateFormat;
@@ -9,6 +15,8 @@ import java.util.*;
  * Created by Rayee on 2017/12/28.
  */
 public class ESHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(ESHandler.class);
 
     private static final String manual_index_name = "default";
 
@@ -55,6 +63,43 @@ public class ESHandler {
             calendar.add(Calendar.DAY_OF_YEAR, 7);
         }
         return indexs;
+    }
+
+    /**
+     * 结果解析
+     *
+     * @param jestResult Jest封装的ES结果
+     * @param sourceType 结果类
+     */
+    public static <S> ESSearchResult<S> parseResult(JestResult jestResult, Class<S> sourceType) {
+        List<S> hits = jestResult.getSourceAsObjectList(sourceType);
+        ESSearchResult<S> result = new ESSearchResult<>();
+        //赋值
+        if (jestResult.isSucceeded()) {
+            JsonElement scrollId = jestResult.getJsonObject().get("_scroll_id");
+            result.setHits(hits);
+            if (scrollId != null) {
+                result.setScrollId(scrollId.getAsString());
+            }
+            result.setTotal(jestResult.getJsonObject().getAsJsonObject("hits").get("total").getAsLong());
+            result.setAggregations(getAggregations(jestResult.getJsonObject()));
+            return result;
+        }
+
+        logger.error("[系统异常] 索引查询失败 msg={}", jestResult.getErrorMessage());
+        throw new SystemException("error");
+    }
+
+    public static JsonObject getAggregations(JsonObject jsonObject) {
+        if (jsonObject == null) {
+            return new JsonObject();
+        }
+        if (jsonObject.has("aggregations"))
+            return jsonObject.getAsJsonObject("aggregations");
+        if (jsonObject.has("aggs")) {
+            return jsonObject.getAsJsonObject("aggs");
+        }
+        return new JsonObject();
     }
 
 }

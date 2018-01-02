@@ -36,6 +36,7 @@ public class ESIndexService<T extends BaseIndex> {
             logger.error("创建ES索引【失败】执行结果为空index={}", JsonUtils.toJson(index));
             throw ErrorMessage.es_do_index_sys_error.getSystemException();
         } else if (result.isSucceeded()) {
+            System.out.println("创建 success");
             logger.info("创建ES索引【成功】index={},type={},id={},doc={}", result.getIndex(), result.getType(), result.getId(), result.getJsonString());
         } else {
             logger.error("创建ES索引【失败】responseCode={},errorMessage={},index={}", result.getResponseCode(), result.getErrorMessage(), JsonUtils.toJson(index));

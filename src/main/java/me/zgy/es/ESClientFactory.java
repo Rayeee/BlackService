@@ -3,8 +3,8 @@ package me.zgy.es;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestClientFactory;
 import io.searchbox.client.config.HttpClientConfig;
+import me.zgy.cst.BlackCst;
 import me.zgy.utils.ConfigUtils;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
@@ -14,15 +14,15 @@ import java.util.concurrent.TimeUnit;
  */
 public class ESClientFactory {
 
-    private static String hosts = ConfigUtils.getString("es.hosts");
+    private static String hosts = ConfigUtils.getString(BlackCst.ES_HOSTS);
 
     private static final JestClient client;
 
     static {
         JestClientFactory factory = new JestClientFactory();
         factory.setHttpClientConfig(new HttpClientConfig
-                .Builder(Arrays.asList(hosts.split(",")))
-                .defaultCredentials("elastic", "changeme")
+                .Builder(Arrays.asList(hosts.split(BlackCst.COMMA)))
+                .defaultCredentials(ConfigUtils.getString(BlackCst.ES_USERNAME), BlackCst.ES_PASSWORD)
                 .multiThreaded(true)
                 .discoveryEnabled(true)
                 .discoveryFrequency(1, TimeUnit.SECONDS)
@@ -30,11 +30,10 @@ public class ESClientFactory {
         client = factory.getObject();
     }
 
-    private ESClientFactory(){
-
+    private ESClientFactory() {
     }
 
-    public static JestClient getClient(){
+    public static JestClient getClient() {
         return client;
     }
 

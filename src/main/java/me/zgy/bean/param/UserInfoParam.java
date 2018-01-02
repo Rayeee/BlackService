@@ -34,6 +34,10 @@ public class UserInfoParam {
 
     private Date updatedAt;
 
+    public UserInfoParam() {
+
+    }
+
     public UserInfoParam(String name, String email, String password, Date dob, String address) {
         this.name = name;
         this.email = email;

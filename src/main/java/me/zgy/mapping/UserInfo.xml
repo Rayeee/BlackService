@@ -9,6 +9,13 @@
         where id = #{id}
     </select>
 
+    <select id="queryList" resultType="me.zgy.bean.vo.UserInfoVo">
+        select
+        <include refid="UserInfoColumns"/>
+        from tb_user_info
+        where address = #{address}
+    </select>
+
     <select id="queryByAddress" resultType="me.zgy.bean.vo.UserInfoVo">
         select
         <include refid="UserInfoColumns"/>

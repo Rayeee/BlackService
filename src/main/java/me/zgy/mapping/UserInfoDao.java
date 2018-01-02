@@ -4,6 +4,7 @@ import me.zgy.bean.entity.UserInfoEntity;
 import me.zgy.bean.vo.UserInfoVo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +15,8 @@ public interface UserInfoDao {
     int add(UserInfoEntity userInfoEntity);
 
     UserInfoVo queryById(@Param("id") Long id);
+
+    List<UserInfoVo> queryList(@Param("address") String address);
 
     List<UserInfoVo> queryByAddress(@Param("address") String address);
 
