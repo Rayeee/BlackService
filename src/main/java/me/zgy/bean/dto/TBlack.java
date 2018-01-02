@@ -10,8 +10,6 @@ import java.util.Date;
 @Data
 public class TBlack {
 
-    private Integer id;
-
     private Integer cid;
 
     private String creditNo;
@@ -42,4 +40,6 @@ public class TBlack {
 
     private String entityauthdate;
 
+    public TBlack() {
+    }
 }
