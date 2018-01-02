@@ -1,15 +1,13 @@
 package me.zgy.api;
 
-import me.zgy.bean.dto.UserInfoDto;
-import me.zgy.bean.param.QueryParam;
-
-import java.util.List;
+import me.zgy.bean.dto.TBlack;
+import me.zgy.bean.param.BlackSearchParam;
 
 /**
- * Created by Rayee on 2017/12/29.
+ * Created by Rayee on 2018/1/2.
  */
 public interface BlackService {
 
-    List<UserInfoDto> queryList(QueryParam param);
+    TBlack query(BlackSearchParam param);
 
 }

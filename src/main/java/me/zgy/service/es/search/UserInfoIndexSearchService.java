@@ -1,4 +1,4 @@
-package me.zgy.service.es;
+package me.zgy.service.es.search;
 
 import me.zgy.bean.base.BaseScrollSearchParamDto;
 import me.zgy.es.ESHandler;

@@ -1,4 +1,4 @@
-package me.zgy.service.es;
+package me.zgy.service.es.search;
 
 import io.searchbox.action.Action;
 import io.searchbox.client.JestClient;

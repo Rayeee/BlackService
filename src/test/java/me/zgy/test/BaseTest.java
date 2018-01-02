@@ -1,6 +1,6 @@
 package me.zgy.test;
 
-import me.zgy.api.UserInfoService;
+import me.zgy.api.BlackService;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,6 +15,6 @@ import javax.annotation.Resource;
 public class BaseTest {
 
     @Resource
-    protected UserInfoService userInfoService;
+    protected BlackService blackService;
 
 }

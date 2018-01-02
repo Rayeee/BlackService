@@ -1,7 +1,8 @@
-package me.zgy.service;
+package me.zgy.service.es.index;
 
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
+import me.zgy.bean.query.BlackQuery;
 import me.zgy.cst.ErrorMessage;
 import me.zgy.es.ESClientFactory;
 import me.zgy.es.index.base.BaseIndex;

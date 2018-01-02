@@ -1,18 +1,34 @@
 package me.zgy.service.impl;
 
 import me.zgy.api.BlackService;
-import me.zgy.bean.dto.UserInfoDto;
-import me.zgy.bean.param.QueryParam;
+import me.zgy.bean.dto.TBlack;
+import me.zgy.bean.param.BlackSearchParam;
+import me.zgy.bean.query.BlackQuery;
+import me.zgy.bean.vo.BlackVo;
+import me.zgy.mapping.BlackDao;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.annotation.Resource;
 
 /**
- * Created by Rayee on 2017/12/29.
+ * Created by Rayee on 2018/1/2.
  */
+@Service
 public class BlackServiceImpl implements BlackService {
 
+    @Resource
+    private BlackDao blackDao;
+
     @Override
-    public List<UserInfoDto> queryList(QueryParam param) {
-        return null;
+    public TBlack query(BlackSearchParam param) {
+        return buildTBlack(blackDao.queryObj(BlackQuery.builder().creditNo(param.getCreditNo()).build()));
     }
+
+    private TBlack buildTBlack(BlackVo vo) {
+        TBlack black = new TBlack();
+        BeanUtils.copyProperties(vo, black);
+        return black;
+    }
+
 }
