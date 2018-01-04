@@ -32,7 +32,6 @@ public class BlackIndexService extends ESIndexService<BlackIndex> {
         index(buildIndex(black), BlackCst.BLACK_INDEX_NAME, BlackCst.BLACK_INDEX_TYPE);
     }
 
-    //待验证，不要用
 //    public void batchIndex(BlackSearchParam param) throws ServiceException, IOException {
 //        List<TBlack> infos = Lists.newArrayList();
 //        Bulk.Builder bulkBuilder = new Bulk.Builder();

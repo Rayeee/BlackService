@@ -39,41 +39,41 @@ public class ESTest extends BaseTest {
         System.out.println(JsonUtils.toJson(blacks));
     }
 
-    @Test
-    public void test03() throws ServiceException, IOException {
-        long start = System.currentTimeMillis();
-        for (int j = 0; j < 600; j++) {
-            long start1 = System.currentTimeMillis();
-            List<TBlack> list = new ArrayList<>(100);
-            for (int i = 0; i < 30000; i++) {
-                list.add(buildTBlack());
-            }
-            blackIndexService.batchIndex(list);
-            list.clear();
-            System.out.println("j = " + j + "3W数据耗时" + (System.currentTimeMillis() - start1) + "ms");
-        }
-        System.out.println("插入2000W数据耗时" + (System.currentTimeMillis() - start) + "ms");
-    }
+//    @Test
+//    public void test03() throws ServiceException, IOException {
+//        long start = System.currentTimeMillis();
+//        for (int j = 0; j < 600; j++) {
+//            long start1 = System.currentTimeMillis();
+//            List<TBlack> list = new ArrayList<>(100);
+//            for (int i = 0; i < 30000; i++) {
+//                list.add(buildTBlack());
+//            }
+//            blackIndexService.batchIndex(list);
+//            list.clear();
+//            System.out.println("j = " + j + "3W数据耗时" + (System.currentTimeMillis() - start1) + "ms");
+//        }
+//        System.out.println("插入2000W数据耗时" + (System.currentTimeMillis() - start) + "ms");
+//    }
 
-    IdCardGenerator generator = new IdCardGenerator();
+//    IdCardGenerator generator = new IdCardGenerator();
 
-    private TBlack buildTBlack() {
-        TBlack black = new TBlack();
-        black.setCreditNo(generator.generate());
-        black.setChannel("abc");
-        black.setEntityauthdate("2018-01-02");
-        black.setEntityauthcode("code");
-        black.setSeqno("qazwsx");
-        black.setRelation("relation");
-        black.setMobilePhone("13900000000");
-        black.setMemberName(ChineseName.generate());
-        black.setReasonCode("REASON_CODE");
-        black.setRtmsg("message yeyeye");
-        black.setIsblack("是");
-        black.setAddTime(new Date());
-        black.setUpdateTime(new Date());
-        black.setRtcode("RT_CODE");
-        return black;
-    }
+//    private TBlack buildTBlack() {
+//        TBlack black = new TBlack();
+//        black.setCreditNo(generator.generate());
+//        black.setChannel("abc");
+//        black.setEntityauthdate("2018-01-02");
+//        black.setEntityauthcode("code");
+//        black.setSeqno("qazwsx");
+//        black.setRelation("relation");
+//        black.setMobilePhone("13900000000");
+//        black.setMemberName(ChineseName.generate());
+//        black.setReasonCode("REASON_CODE");
+//        black.setRtmsg("message yeyeye");
+//        black.setIsblack("是");
+//        black.setAddTime(new Date());
+//        black.setUpdateTime(new Date());
+//        black.setRtcode("RT_CODE");
+//        return black;
+//    }
 
 }
