@@ -13,6 +13,7 @@ import java.util.*;
 
 /**
  * Created by Rayee on 2017/12/28.
+ * 生成索引名、结果解析
  */
 public class ESHandler {
 
