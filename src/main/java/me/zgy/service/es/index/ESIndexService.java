@@ -46,6 +46,7 @@ public class ESIndexService<T extends BaseIndex> {
         }
     }
 
+
 //    public void batchIndex(List<T> entities, String indexName, String indexType) throws IOException {
 //        logger.debug("开始批量建索引indexName={},indexType={}, entity={}", indexName, indexType, JsonUtils.toJson(entities));
 //        Bulk.Builder bulkBuilder = new Bulk.Builder();
