@@ -23,6 +23,7 @@ import java.util.List;
 @Service
 public class BlackIndexService extends ESIndexService<BlackIndex> {
 
+
     @Resource
     private BlackService blackService;
 
